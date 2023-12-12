@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Machine Details</title>
+    <!-- Include Tailwind CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        clifford: '#da373d',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-gray-100 flex flex-col min-h-screen">
+    <!-- Navbar -->
+    <nav class="bg-blue-100 text-blue-800 p-4">
+        <div class="flex items-center justify-between">
+    
+            <!-- Logo on the left -->
+            <div class="flex items-center">
+                <img src="https://dhakabankltd.com/wp-content/themes/dhakabankupdate/images/dbl-plc-logo.png" alt="Logo" class="h-8 mr-2">
+             </div>
+             <a href="#" class="text-lg font-extrabold">Welcome To Dhaka Bank PLC</a>
+             
+            <!-- Navigation links on the right -->
+            <div class="flex items-center">
+                <a href="#" class="mr-4">Home</a>
+                <a href="#" class="mr-4">About</a>
+                <a href="#" class="mr-4">Contact</a>
+            </div>
+        </div>
+    </nav>
+    <!-- Main content -->
+    <div class="container mx-auto my-8 p-8 bg-white rounded-md shadow-md flex-1">
+        <div class="text-center">
+            <h1 class="text-4xl font-bold mb-4">Machine Details</h1>
+
+            <div class="flex flex-col items-center">
+                <div class="mb-4">
+                    <label for="ipAddress" class="block text-gray-700 text-sm font-bold mb-2">IP Address:</label>
+                    <input type="text" id="ipAddress" placeholder="Enter IP Address" class="border rounded-md px-4 py-2 w-64">
+                </div>
+
+                <div class="mb-4">
+                    <label for="portNumber" class="block text-gray-700 text-sm font-bold mb-2">Port Number:</label>
+                    <input type="text" id="portNumber" placeholder="Enter Port Number" class="border rounded-md px-4 py-2 w-64">
+                </div>
+
+                <button onclick="getMachineDetails()" class="bg-blue-500 text-white py-2 px-4 rounded-md mb-4">Get Details</button>
+            </div>
+
+            <div id="result"></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-blue-100 text-blue-800 p-4 mt-auto">
+        <div class="text-center">
+            <p>&copy; 2023 Dhaka Bank PLC. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function getMachineDetails() {
+            var ipAddress = document.getElementById("ipAddress").value;
+            var portNumber = document.getElementById("portNumber").value;
+
+            // Make a POST request to the server using Fetch API
+            fetch('/get_machine_details', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    ipAddress: ipAddress,
+                    portNumber: portNumber,
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    document.getElementById("result").innerHTML = `Machine details: ${data.hostName}`;
+                } else {
+                    document.getElementById("result").innerHTML = `Error: ${data.error}`;
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+</body>
+</html>
