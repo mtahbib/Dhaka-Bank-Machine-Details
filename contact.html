@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Machine Details</title>
+    <title>Contact us</title>
     <!-- Include Tailwind CSS CDN -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -19,6 +19,9 @@
         }
     </script>
 </head>
+<nav>
+    
+</nav>
 
 <body class="bg-gray-100 flex flex-col min-h-screen">
     <!-- Navbar -->
@@ -27,8 +30,8 @@
     
             <!-- Logo on the left -->
             <div class="flex items-center">
-                <img src="https://dhakabankltd.com/wp-content/themes/dhakabankupdate/images/dbl-plc-logo.png" alt="Logo" class="h-8 mr-2">
-             </div>
+                <a href="index.html"> <img src="https://dhakabankltd.com/wp-content/themes/dhakabankupdate/images/dbl-plc-logo.png" alt="Logo" class="h-8 mr-2"></a>
+              </div>
              <a href="#" class="text-lg font-extrabold">Contact Us</a>
              
             <!-- Navigation links on the right -->
@@ -40,7 +43,32 @@
         </div>
     </nav>
     <body>
-        
+        <div class="container mx-auto my-8 p-8 bg-white rounded-md shadow-md flex-1">
+            <div class="text-center">
+                <h1 class="text-4xl font-bold mb-4">Contact Details</h1>
+    
+                <div class="flex flex-col items-center">
+                    <div class="mb-4">
+                        <label for="fullName" class="block text-gray-700 text-sm font-bold mb-2">Full Name:</label>
+                        <input type="text" id="fullName" placeholder="Enter Full Name" class="border rounded-md px-4 py-2 w-64">
+                    </div>
+    
+                    <div class="mb-4">
+                        <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Email:</label>
+                        <input type="email" id="email" placeholder="Enter Email" class="border rounded-md px-4 py-2 w-64">
+                    </div>
+    
+                    <div class="mb-4">
+                        <label for="message" class="block text-gray-700 text-sm font-bold mb-2">Message:</label>
+                        <textarea id="message" placeholder="Enter your message" class="border rounded-md px-4 py-2 w-64"></textarea>
+                    </div>
+    
+                    <button onclick="submitContactDetails()" class="bg-blue-500 text-white py-2 px-4 rounded-md mb-4">Submit Details</button>
+                </div>
+    
+                <div id="contactResult"></div>
+            </div>
+        </div>
 
     </body>
  <!-- Footer -->

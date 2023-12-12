@@ -27,7 +27,7 @@
     
             <!-- Logo on the left -->
             <div class="flex items-center">
-                <img src="https://dhakabankltd.com/wp-content/themes/dhakabankupdate/images/dbl-plc-logo.png" alt="Logo" class="h-8 mr-2">
+               <a href="index.html"> <img src="https://dhakabankltd.com/wp-content/themes/dhakabankupdate/images/dbl-plc-logo.png" alt="Logo" class="h-8 mr-2"></a>
              </div>
              <a href="#" class="text-lg font-extrabold">Welcome To Dhaka Bank PLC</a>
              
@@ -70,10 +70,38 @@
     </footer>
 
     <script>
+        function isValidIpAddress(ipAddress) {
+            // Regular expression for any valid IP address format (numbers and dots)
+            const ipRegex = /^(\d+\.\d+\.\d+\.\d+)$/;
+    
+            if (!ipRegex.test(ipAddress)) {
+                alert('Please enter a valid IP address with numbers and dots only');
+                return false;
+            }
+    
+            return true;
+        }
+    
+        function isValidPortNumber(portNumber) {
+            // Regular expression for a valid port number (exactly 4 digits)
+            const portRegex = /^\d{4}$/;
+    
+            if (!portRegex.test(portNumber)) {
+                alert('Please enter a valid port number with exactly 4 digits');
+                return false;
+            }
+    
+            return true;
+        }
+    
         function getMachineDetails() {
             var ipAddress = document.getElementById("ipAddress").value;
             var portNumber = document.getElementById("portNumber").value;
-
+    
+            if (!isValidIpAddress(ipAddress) || !isValidPortNumber(portNumber)) {
+                return;
+            }
+    
             // Make a POST request to the server using Fetch API
             fetch('/get_machine_details', {
                 method: 'POST',
